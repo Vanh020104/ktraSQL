@@ -84,6 +84,15 @@ ON Customer (Name);
 
 --8
 
+Create view vCustomerTransactions 
+as 
+select Name, Balance, TransactionDate, Amount, DepositorWithdraw 
+from Customer c
+join CustomerAccount ca
+on c.CustomerId = ca.CustomerId
+join CustomerTransaction ct
+on ct.AccountNumber= ca.AccountNumber
+
 --9--
 CREATE PROCEDURE spAddCustomer (@CustomerId INT, @CustomerName VARCHAR(50), @Country VARCHAR(50), @Phone VARCHAR(50), @Email VARCHAR(50))
 AS
